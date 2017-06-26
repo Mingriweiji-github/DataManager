@@ -1,0 +1,26 @@
+//
+//  PrefixHeader.pch
+//  NewsDemo
+//
+//  Created by Seven on 2017/6/26.
+//  Copyright © 2017年 Seven. All rights reserved.
+//
+
+#ifndef PrefixHeader_pch
+#define PrefixHeader_pch
+
+
+// MARK: global variable
+/*!
+ *  @brief 当前屏幕宽度。
+ */
+#define kWFScreenWidth [UIScreen mainScreen].bounds.size.width
+
+/*!
+ *  @brief 当前屏幕高度。
+ */
+#define kWFScreenHeight [UIScreen mainScreen].bounds.size.height
+
+#import "KMUtils.h"
+
+#endif /* PrefixHeader_pch */

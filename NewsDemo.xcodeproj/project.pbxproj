@@ -16,6 +16,7 @@
 		141ED0631F0148B50063B6D8 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 141ED0611F0148B50063B6D8 /* LaunchScreen.storyboard */; };
 		141ED06E1F0148B50063B6D8 /* NewsDemoTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 141ED06D1F0148B50063B6D8 /* NewsDemoTests.m */; };
 		141ED0791F0148B50063B6D8 /* NewsDemoUITests.m in Sources */ = {isa = PBXBuildFile; fileRef = 141ED0781F0148B50063B6D8 /* NewsDemoUITests.m */; };
+		142A35941F0150C700A48282 /* KMUtils.m in Sources */ = {isa = PBXBuildFile; fileRef = 142A35931F0150C700A48282 /* KMUtils.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -53,6 +54,9 @@
 		141ED0741F0148B50063B6D8 /* NewsDemoUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = NewsDemoUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		141ED0781F0148B50063B6D8 /* NewsDemoUITests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = NewsDemoUITests.m; sourceTree = "<group>"; };
 		141ED07A1F0148B50063B6D8 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		142A35911F014F1B00A48282 /* PrefixHeader.pch */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = PrefixHeader.pch; sourceTree = "<group>"; };
+		142A35921F0150C700A48282 /* KMUtils.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = KMUtils.h; sourceTree = "<group>"; };
+		142A35931F0150C700A48282 /* KMUtils.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = KMUtils.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -107,6 +111,8 @@
 				141ED0541F0148B50063B6D8 /* AppDelegate.m */,
 				141ED0561F0148B50063B6D8 /* ViewController.h */,
 				141ED0571F0148B50063B6D8 /* ViewController.m */,
+				142A35921F0150C700A48282 /* KMUtils.h */,
+				142A35931F0150C700A48282 /* KMUtils.m */,
 				141ED0591F0148B50063B6D8 /* Main.storyboard */,
 				141ED05F1F0148B50063B6D8 /* Assets.xcassets */,
 				141ED0611F0148B50063B6D8 /* LaunchScreen.storyboard */,
@@ -121,6 +127,7 @@
 			isa = PBXGroup;
 			children = (
 				141ED0511F0148B50063B6D8 /* main.m */,
+				142A35911F014F1B00A48282 /* PrefixHeader.pch */,
 			);
 			name = "Supporting Files";
 			sourceTree = "<group>";
@@ -277,6 +284,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				141ED0581F0148B50063B6D8 /* ViewController.m in Sources */,
+				142A35941F0150C700A48282 /* KMUtils.m in Sources */,
 				141ED0551F0148B50063B6D8 /* AppDelegate.m in Sources */,
 				141ED0521F0148B50063B6D8 /* main.m in Sources */,
 				141ED05E1F0148B50063B6D8 /* NewsDemo.xcdatamodeld in Sources */,
@@ -365,6 +373,7 @@
 				GCC_DYNAMIC_NO_PIC = NO;
 				GCC_NO_COMMON_BLOCKS = YES;
 				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PREFIX_HEADER = "$(SRCROOT)/NewsDemo/PrefixHeader.pch";
 				GCC_PREPROCESSOR_DEFINITIONS = (
 					"DEBUG=1",
 					"$(inherited)",
@@ -412,6 +421,7 @@
 				ENABLE_STRICT_OBJC_MSGSEND = YES;
 				GCC_C_LANGUAGE_STANDARD = gnu99;
 				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_PREFIX_HEADER = "$(SRCROOT)/NewsDemo/PrefixHeader.pch";
 				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
 				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
 				GCC_WARN_UNDECLARED_SELECTOR = YES;
@@ -513,6 +523,7 @@
 				141ED07F1F0148B50063B6D8 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 		141ED0801F0148B50063B6D8 /* Build configuration list for PBXNativeTarget "NewsDemoTests" */ = {
 			isa = XCConfigurationList;
@@ -521,6 +532,7 @@
 				141ED0821F0148B50063B6D8 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 		141ED0831F0148B50063B6D8 /* Build configuration list for PBXNativeTarget "NewsDemoUITests" */ = {
 			isa = XCConfigurationList;
@@ -529,6 +541,7 @@
 				141ED0851F0148B50063B6D8 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 
