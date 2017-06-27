@@ -10,17 +10,17 @@
 #define PrefixHeader_pch
 
 
-// MARK: global variable
-/*!
- *  @brief 当前屏幕宽度。
- */
 #define kWFScreenWidth [UIScreen mainScreen].bounds.size.width
-
-/*!
- *  @brief 当前屏幕高度。
- */
 #define kWFScreenHeight [UIScreen mainScreen].bounds.size.height
 
+#ifdef __OBJC__
+#import <Foundation/Foundation.h>
 #import "KMUtils.h"
+#import "KMNetWorkManager.h"
+#import "NSString+WFURLEncode.h"
+#import "WFModel.h"
+#import "MJExtension.h"
+#endif
+
 
 #endif /* PrefixHeader_pch */

@@ -17,8 +17,12 @@
 		141ED0631F0148B50063B6D8 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 141ED0611F0148B50063B6D8 /* LaunchScreen.storyboard */; };
 		141ED06E1F0148B50063B6D8 /* NewsDemoTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 141ED06D1F0148B50063B6D8 /* NewsDemoTests.m */; };
 		141ED0791F0148B50063B6D8 /* NewsDemoUITests.m in Sources */ = {isa = PBXBuildFile; fileRef = 141ED0781F0148B50063B6D8 /* NewsDemoUITests.m */; };
-		142A35941F0150C700A48282 /* KMUtils.m in Sources */ = {isa = PBXBuildFile; fileRef = 142A35931F0150C700A48282 /* KMUtils.m */; };
-		142A35971F01C3FD00A48282 /* KMNetWorkManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 142A35961F01C3FD00A48282 /* KMNetWorkManager.m */; };
+		C772C3681F02083C0046678E /* NSString+WFURLEncode.m in Sources */ = {isa = PBXBuildFile; fileRef = C772C35F1F02083C0046678E /* NSString+WFURLEncode.m */; };
+		C772C3691F02083C0046678E /* UIViewExt.m in Sources */ = {isa = PBXBuildFile; fileRef = C772C3611F02083C0046678E /* UIViewExt.m */; };
+		C772C3741F0229660046678E /* KMNetWorkManager.m in Sources */ = {isa = PBXBuildFile; fileRef = C772C3711F0229660046678E /* KMNetWorkManager.m */; };
+		C772C3751F0229660046678E /* KMUtils.m in Sources */ = {isa = PBXBuildFile; fileRef = C772C3731F0229660046678E /* KMUtils.m */; };
+		C772C37B1F0229AD0046678E /* KMNewsAPI.m in Sources */ = {isa = PBXBuildFile; fileRef = C772C3781F0229AD0046678E /* KMNewsAPI.m */; };
+		C772C37C1F0229AD0046678E /* KMNewsModel.m in Sources */ = {isa = PBXBuildFile; fileRef = C772C37A1F0229AD0046678E /* KMNewsModel.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -57,12 +61,20 @@
 		141ED0781F0148B50063B6D8 /* NewsDemoUITests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = NewsDemoUITests.m; sourceTree = "<group>"; };
 		141ED07A1F0148B50063B6D8 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		142A35911F014F1B00A48282 /* PrefixHeader.pch */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = PrefixHeader.pch; sourceTree = "<group>"; };
-		142A35921F0150C700A48282 /* KMUtils.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = KMUtils.h; sourceTree = "<group>"; };
-		142A35931F0150C700A48282 /* KMUtils.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = KMUtils.m; sourceTree = "<group>"; };
-		142A35951F01C3FD00A48282 /* KMNetWorkManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = KMNetWorkManager.h; sourceTree = "<group>"; };
-		142A35961F01C3FD00A48282 /* KMNetWorkManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = KMNetWorkManager.m; sourceTree = "<group>"; };
 		627DF82E776872C2E52206A9 /* Pods-NewsDemo.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-NewsDemo.debug.xcconfig"; path = "Pods/Target Support Files/Pods-NewsDemo/Pods-NewsDemo.debug.xcconfig"; sourceTree = "<group>"; };
 		B62665A7B3F286C98FEAE45F /* Pods_NewsDemo.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_NewsDemo.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		C772C35E1F02083C0046678E /* NSString+WFURLEncode.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSString+WFURLEncode.h"; sourceTree = "<group>"; };
+		C772C35F1F02083C0046678E /* NSString+WFURLEncode.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSString+WFURLEncode.m"; sourceTree = "<group>"; };
+		C772C3601F02083C0046678E /* UIViewExt.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UIViewExt.h; sourceTree = "<group>"; };
+		C772C3611F02083C0046678E /* UIViewExt.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = UIViewExt.m; sourceTree = "<group>"; };
+		C772C3701F0229660046678E /* KMNetWorkManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = KMNetWorkManager.h; sourceTree = "<group>"; };
+		C772C3711F0229660046678E /* KMNetWorkManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = KMNetWorkManager.m; sourceTree = "<group>"; };
+		C772C3721F0229660046678E /* KMUtils.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = KMUtils.h; sourceTree = "<group>"; };
+		C772C3731F0229660046678E /* KMUtils.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = KMUtils.m; sourceTree = "<group>"; };
+		C772C3771F0229AD0046678E /* KMNewsAPI.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = KMNewsAPI.h; sourceTree = "<group>"; };
+		C772C3781F0229AD0046678E /* KMNewsAPI.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = KMNewsAPI.m; sourceTree = "<group>"; };
+		C772C3791F0229AD0046678E /* KMNewsModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = KMNewsModel.h; sourceTree = "<group>"; };
+		C772C37A1F0229AD0046678E /* KMNewsModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = KMNewsModel.m; sourceTree = "<group>"; };
 		C88A758677C660B2C084DC02 /* Pods-NewsDemo.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-NewsDemo.release.xcconfig"; path = "Pods/Target Support Files/Pods-NewsDemo/Pods-NewsDemo.release.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -121,10 +133,9 @@
 				141ED0541F0148B50063B6D8 /* AppDelegate.m */,
 				141ED0561F0148B50063B6D8 /* ViewController.h */,
 				141ED0571F0148B50063B6D8 /* ViewController.m */,
-				142A35921F0150C700A48282 /* KMUtils.h */,
-				142A35931F0150C700A48282 /* KMUtils.m */,
-				142A35951F01C3FD00A48282 /* KMNetWorkManager.h */,
-				142A35961F01C3FD00A48282 /* KMNetWorkManager.m */,
+				C772C3761F0229AD0046678E /* News */,
+				C772C36F1F0229660046678E /* Utils */,
+				C772C3591F02083C0046678E /* Categories */,
 				141ED0591F0148B50063B6D8 /* Main.storyboard */,
 				141ED05F1F0148B50063B6D8 /* Assets.xcassets */,
 				141ED0611F0148B50063B6D8 /* LaunchScreen.storyboard */,
@@ -177,6 +188,39 @@
 				C88A758677C660B2C084DC02 /* Pods-NewsDemo.release.xcconfig */,
 			);
 			name = Pods;
+			sourceTree = "<group>";
+		};
+		C772C3591F02083C0046678E /* Categories */ = {
+			isa = PBXGroup;
+			children = (
+				C772C35E1F02083C0046678E /* NSString+WFURLEncode.h */,
+				C772C35F1F02083C0046678E /* NSString+WFURLEncode.m */,
+				C772C3601F02083C0046678E /* UIViewExt.h */,
+				C772C3611F02083C0046678E /* UIViewExt.m */,
+			);
+			path = Categories;
+			sourceTree = "<group>";
+		};
+		C772C36F1F0229660046678E /* Utils */ = {
+			isa = PBXGroup;
+			children = (
+				C772C3701F0229660046678E /* KMNetWorkManager.h */,
+				C772C3711F0229660046678E /* KMNetWorkManager.m */,
+				C772C3721F0229660046678E /* KMUtils.h */,
+				C772C3731F0229660046678E /* KMUtils.m */,
+			);
+			path = Utils;
+			sourceTree = "<group>";
+		};
+		C772C3761F0229AD0046678E /* News */ = {
+			isa = PBXGroup;
+			children = (
+				C772C3771F0229AD0046678E /* KMNewsAPI.h */,
+				C772C3781F0229AD0046678E /* KMNewsAPI.m */,
+				C772C3791F0229AD0046678E /* KMNewsModel.h */,
+				C772C37A1F0229AD0046678E /* KMNewsModel.m */,
+			);
+			path = News;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -364,10 +408,14 @@
 			buildActionMask = 2147483647;
 			files = (
 				141ED0581F0148B50063B6D8 /* ViewController.m in Sources */,
-				142A35941F0150C700A48282 /* KMUtils.m in Sources */,
+				C772C37B1F0229AD0046678E /* KMNewsAPI.m in Sources */,
+				C772C3741F0229660046678E /* KMNetWorkManager.m in Sources */,
+				C772C3691F02083C0046678E /* UIViewExt.m in Sources */,
 				141ED0551F0148B50063B6D8 /* AppDelegate.m in Sources */,
+				C772C3681F02083C0046678E /* NSString+WFURLEncode.m in Sources */,
 				141ED0521F0148B50063B6D8 /* main.m in Sources */,
-				142A35971F01C3FD00A48282 /* KMNetWorkManager.m in Sources */,
+				C772C3751F0229660046678E /* KMUtils.m in Sources */,
+				C772C37C1F0229AD0046678E /* KMNewsModel.m in Sources */,
 				141ED05E1F0148B50063B6D8 /* NewsDemo.xcdatamodeld in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

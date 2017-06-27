@@ -14,7 +14,7 @@
             buildForArchiving = "YES">
             <BuildableReference
                BuildableIdentifier = 'primary'
-               BlueprintIdentifier = '6B1964F244437F535079428394974351'
+               BlueprintIdentifier = '72EEE2DC6FA7819A90A40B8F80044DBF'
                BlueprintName = 'WFUtils'
                ReferencedContainer = 'container:Pods.xcodeproj'
                BuildableName = 'WFUtils.framework'>
