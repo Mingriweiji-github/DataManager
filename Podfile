@@ -9,6 +9,6 @@ target 'NewsDemo' do
     pod 'WFUtils', '~> 1.1.3'
     pod "MagicalRecord"
     pod 'SDWebImage'
-
+    pod 'UITableView+FDTemplateLayoutCell', '~> 1.6'
     use_frameworks!
 end

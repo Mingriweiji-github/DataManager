@@ -18,6 +18,9 @@
 #import "WFNewsADCell.h"
 #import "WFNewsMovieCell.h"
 #import "ShieldModule.h"
+
+#import "UITableView+FDTemplateLayoutCell.h"
+
 @interface ViewController ()
 
 @property (weak, nonatomic) IBOutlet UITableView *tableView;
@@ -50,11 +53,11 @@
                              };
     [KMNewsAPI getNewsWithParam:params Success:^(id  _Nonnull response) {
         
-        NSLog(@"model=%@",response);        
         if ([response isKindOfClass:[NSArray class]]) {
             
             _newsArray = response;
-            
+            NSLog(@"count=%ld,_newsArray=%@",_newsArray.count,_newsArray);
+
         }
         dispatch_async(dispatch_get_main_queue(), ^{
             [self.tableView reloadData];
@@ -154,35 +157,34 @@
             return kWFScale(251);
         }
     }
-//    if ([model.feedsType isEqualToString:@"article"] && model.isBigPic == 0 && model.images.count == 3) {
-//        return [tableView fd_heightForCellWithIdentifier:@"imagesNews"  cacheByIndexPath:indexPath configuration:^(WFImagesNewsCell *cell) {
-//            cell.model = model;
-//        }];
-//    }else if (([model.feedsType isEqualToString:@"article"] || [model.feedsType isEqualToString:@"video"]) && model.isBigPic == 0 && (model.images.count == 1 || model.images.count == 2)){
-//        return 110;
-//    }else if (([model.feedsType isEqualToString:@"article"] || [model.feedsType isEqualToString:@"video"]) && model.isBigPic == 1 && model.images.count == 1){
-//        
-//        if ([self.channel isEqualToString:@"video"]) {
-//            return kWFScale(251);
-//        }
-//        if([model.feedsType isEqualToString:@"article"]){
-//            return [tableView fd_heightForCellWithIdentifier:@"bigImagenews"  cacheByIndexPath:indexPath configuration:^(WFBigImageNewsCell *cell) {
-//                cell.channel = self.channel;
-//                cell.model = model;
-//            }];
-//        }else{
-//            
-//            return [tableView fd_heightForCellWithIdentifier:@"videoNews"  cacheByIndexPath:indexPath configuration:^(WFVideoNewsCell *cell) {
-//                cell.model = model;
-//            }];
-//        }
-//        
-//    }else{
-//        return [tableView fd_heightForCellWithIdentifier:@"newsText"  cacheByIndexPath:indexPath configuration:^(WFNewsTextCell *cell) {
-//            cell.model = model;
-//        }];
-//    }
-    return 40;
+    if ([model.feedsType isEqualToString:@"article"] && model.isBigPic == 0 && model.images.count == 3) {
+        return [tableView fd_heightForCellWithIdentifier:@"imagesNews"  cacheByIndexPath:indexPath configuration:^(WFImagesNewsCell *cell) {
+            cell.model = model;
+        }];
+    }else if (([model.feedsType isEqualToString:@"article"] || [model.feedsType isEqualToString:@"video"]) && model.isBigPic == 0 && (model.images.count == 1 || model.images.count == 2)){
+        return 110;
+    }else if (([model.feedsType isEqualToString:@"article"] || [model.feedsType isEqualToString:@"video"]) && model.isBigPic == 1 && model.images.count == 1){
+        
+        if ([self.channel isEqualToString:@"video"]) {
+            return kWFScale(251);
+        }
+        if([model.feedsType isEqualToString:@"article"]){
+            return [tableView fd_heightForCellWithIdentifier:@"bigImagenews"  cacheByIndexPath:indexPath configuration:^(WFBigImageNewsCell *cell) {
+                cell.channel = self.channel;
+                cell.model = model;
+            }];
+        }else{
+            
+            return [tableView fd_heightForCellWithIdentifier:@"videoNews"  cacheByIndexPath:indexPath configuration:^(WFVideoNewsCell *cell) {
+                cell.model = model;
+            }];
+        }
+        
+    }else{
+        return [tableView fd_heightForCellWithIdentifier:@"newsText"  cacheByIndexPath:indexPath configuration:^(WFNewsTextCell *cell) {
+            cell.model = model;
+        }];
+    }
 
 }
 #pragma mark - RegisterCell
