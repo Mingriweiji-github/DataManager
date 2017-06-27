@@ -14,6 +14,11 @@
 			<key>isShown</key>
 			<false/>
 		</dict>
+		<key>MagicalRecord.xcscheme</key>
+		<dict>
+			<key>isShown</key>
+			<false/>
+		</dict>
 		<key>Pods-NewsDemo.xcscheme</key>
 		<dict>
 			<key>isShown</key>
@@ -37,17 +42,22 @@
 			<key>primary</key>
 			<true/>
 		</dict>
-		<key>72EEE2DC6FA7819A90A40B8F80044DBF</key>
+		<key>5CCD9CB3DCB0A3AD5247EF5026FCB2F2</key>
 		<dict>
 			<key>primary</key>
 			<true/>
 		</dict>
-		<key>7A38ED5005673B71FF1E35C2565B3F98</key>
+		<key>918E22ADC1961A0233EFA43C2A282000</key>
 		<dict>
 			<key>primary</key>
 			<true/>
 		</dict>
-		<key>8F96905A21532DCE6522F221F4559A63</key>
+		<key>96D028D8410E9A401CDCEFD40406EEC0</key>
+		<dict>
+			<key>primary</key>
+			<true/>
+		</dict>
+		<key>B38FA4050D35CA4B3A1FAC0E6384FD03</key>
 		<dict>
 			<key>primary</key>
 			<true/>

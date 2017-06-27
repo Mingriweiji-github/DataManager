@@ -7,6 +7,6 @@ target 'NewsDemo' do
     pod 'Realm', '~> 2.6.2'
     pod 'Realm/Headers'
     pod 'WFUtils', '~> 1.1.3'
-    
+    pod "MagicalRecord"
     use_frameworks!
 end
