@@ -10,7 +10,7 @@
 #import <UIKit/UIKit.h>
 
 NS_ASSUME_NONNULL_BEGIN
-#define HOSTSERVER @"http://obs.amol.com.cn:3000" //测试
+FOUNDATION_EXPORT NSString * const KBaseUrl;
 FOUNDATION_EXPORT NSString * const KNewsAPI;
 FOUNDATION_EXPORT __nullable id KUserDefaultsObjectForKey(NSString * _Nullable key);
 FOUNDATION_EXPORT void KUserDefaultsSetObjectForKey(__nullable id obj,NSString * _Nullable key);

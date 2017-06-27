@@ -8,6 +8,7 @@
 
 #import "KMUtils.h"
          /****************API**************/
+NSString * const KBaseUrl = @"http://api.test.amol.com.cn:8083";
 NSString * const KNewsAPI = @"/api/web/v1/third/ttnews";
 
 

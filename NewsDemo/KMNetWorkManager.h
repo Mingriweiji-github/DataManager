@@ -7,7 +7,7 @@
 //
 
 #import <Foundation/Foundation.h>
-
+#import "AFNetworking.h"
 NS_ASSUME_NONNULL_BEGIN
 typedef NS_ENUM(NSUInteger,WFResponseType){
 
@@ -15,7 +15,7 @@ typedef NS_ENUM(NSUInteger,WFResponseType){
     kWFResponseTypeXML = 2,
     kWFResponseTypeData,
 };
-typedef NS_ENUM(NSUInteger,WFReqeustType) {
+typedef NS_ENUM(NSUInteger,WFRequestType) {
 
     kWFRequestTypeJSON = 1,
     kWFRequestTypePlainText = 2,
@@ -31,40 +31,19 @@ typedef void(^CompletionHandle)(id result);
 typedef void(^FailedHandle)(id result);
 
 @interface KMNetWorkManager : NSObject
-//+ (NSString *)baseUrl;
-//
-//+ (void)setTimeout:(NSTimeInterval)timeout;
-//
-///*!
-// *
-// *  配置公共的请求头，只调用一次即可，通常放在应用启动的时候配置就可以了
-// *
-// *  @param httpHeaders 只需要将与服务器商定的固定参数设置即可
-// */
-//+ (void)configCommonHttpHeaders:(NSDictionary *)httpHeaders;
-//
-//+ (void)cancelRequestWithURL:(NSString *)url;
-//
-//+ (WFURLSessionTask *)getWithUrl:(NSString *)url
-//                    refreshCache:(BOOL)refreshCache
-//                         success:(WFResponseSuccess)success
-//                            fail:(WFResponseFail)fail;
-//
-//+ (WFURLSessionTask *)getWithUrl:(NSString *)url
-//                    refreshCache:(BOOL)refreshCache
-//              previousCachedData:(WFResponseSuccess)preCachedData
-//                         success:(WFResponseSuccess)success
-//                            fail:(WFResponseFail)fail;
++ (NSString *)baseUrl;
+
++ (void)setTimeout:(NSTimeInterval)timeout;
 
 
-+(void)GetRequestUrl:(NSString *)url
-              Params:(id)params
-          completion:(CompletionHandle)block
-              failed:(FailedHandle)failedBlock;
++ (void)configCommonHttpHeaders:(NSDictionary *)httpHeaders;
 
-+(void)PostRequestUrl:(NSString *)url
-               Params:(id)params
-           completion:(CompletionHandle)block
-               failed:(FailedHandle)failedBlock;
+
++ (WFURLSessionTask *)getWithUrl:(NSString *)url
+                          params:(nullable NSDictionary *)params
+                         success:(WFResponseSuccess)success
+                            fail:(WFResponseFail)fail;
+
+
 @end
 NS_ASSUME_NONNULL_END
