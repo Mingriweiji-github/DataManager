@@ -7,8 +7,21 @@
 //
 
 #import "ViewController.h"
+#import "KMNewsModel.h"
 #import "KMNewsAPI.h"
+#import "WFNewsTextCell.h"
+#import "WFImageTextNews.h"
+#import "WFImagesNewsCell.h"
+#import "WFBigImageNewsCell.h"
+#import "WFVideoNewsCell.h"
+#import "WFVideoTextCell.h"
+#import "WFNewsADCell.h"
+#import "WFNewsMovieCell.h"
+#import "ShieldModule.h"
 @interface ViewController ()
+
+@property (weak, nonatomic) IBOutlet UITableView *tableView;
+@property(nonatomic,strong)NSMutableArray *newsArray;
 
 @end
 
@@ -17,7 +30,7 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     // Do any additional setup after loading the view, typically from a nib.
-    
+    [self registerCell];
     [self newsData];
 }
 
@@ -37,7 +50,15 @@
                              };
     [KMNewsAPI getNewsWithParam:params Success:^(id  _Nonnull response) {
         
-        NSLog(@"response=%@",response);
+        NSLog(@"model=%@",response);        
+        if ([response isKindOfClass:[NSArray class]]) {
+            
+            _newsArray = response;
+            
+        }
+        dispatch_async(dispatch_get_main_queue(), ^{
+            [self.tableView reloadData];
+        });
         
     } failure:^(NSError * _Nonnull error) {
         
@@ -45,6 +66,165 @@
     }];
 
 }
+- (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section{
+    return self.newsArray.count;
+}
+- (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath{
+    
+    KMNewsModel *model = self.newsArray[indexPath.row];
+//    if ([model isKindOfClass:[NSString class]]) {
+//        WFRefreshCell *refresh = [tableView dequeueReusableCellWithIdentifier:@"WFRefresh"];
+//        return refresh;
+//    }
+    if (model.ad_id) {
+//        [self uploadADWithModel:model andType:@"show"];
+        if ([self.channel isEqualToString:@"video"]) {
+            WFNewsADCell *ad = [tableView dequeueReusableCellWithIdentifier:@"WFNewsAD" forIndexPath:indexPath];
+            ad.model = model;
+            return ad;
+        }
+    }
+    
+    if ([model.feedsType isEqualToString:@"video"] && model.isBigPic == 1) {
+        if ([self.channel isEqualToString:@"video"]) {
+            WFNewsMovieCell *movie = [tableView dequeueReusableCellWithIdentifier:@"WFNewsMovie" forIndexPath:indexPath];
+            movie.model = model;
+            return movie;
+        }
+        WFVideoNewsCell *video = [tableView dequeueReusableCellWithIdentifier:@"videoNews" forIndexPath:indexPath];
+//        video.remove = ^(UITableViewCell *cell,CGPoint point){
+//            NSIndexPath *indexPath = [tableView indexPathForCell:cell];
+//            [self removeAtIndexPath:indexPath showPoint:point upLoadModel:model];
+//        };
+        video.model = model;
+        return video;
+    }else if ([model.feedsType isEqualToString:@"video"] && model.isBigPic == 0){
+        WFVideoTextCell *videoText = [tableView dequeueReusableCellWithIdentifier:@"videoText" forIndexPath:indexPath];
+        videoText.remove = ^(UITableViewCell *cell,CGPoint point){
+            NSIndexPath *indexPath = [tableView indexPathForCell:cell];
+            [self removeAtIndexPath:indexPath showPoint:point upLoadModel:model];
+        };
+        videoText.model = model;
+        return videoText;
+    }else if ([model.feedsType isEqualToString:@"article"] && model.isBigPic == 1){
+        WFBigImageNewsCell *bigImg = [tableView dequeueReusableCellWithIdentifier:@"bigImagenews" forIndexPath:indexPath];
+        bigImg.channel = self.channel;
+        bigImg.remove = ^(UITableViewCell *cell,CGPoint point){
+            NSIndexPath *indexPath = [tableView indexPathForCell:cell];
+            [self removeAtIndexPath:indexPath showPoint:point upLoadModel:model];
+        };
+        bigImg.model = model;
+        return bigImg;
+    }else if ([model.feedsType isEqualToString:@"article"] && model.isBigPic == 0 && (model.images.count == 1 || model.images.count == 2)){
+        WFImageTextNews *imageText = [tableView dequeueReusableCellWithIdentifier:@"imagesText" forIndexPath:indexPath];
+        imageText.remove = ^(UITableViewCell *cell,CGPoint point){
+            NSIndexPath *indexPath = [tableView indexPathForCell:cell];
+            [self removeAtIndexPath:indexPath showPoint:point upLoadModel:model];
+        };
+        imageText.model = model;
+        return imageText;
+    }else if ([model.feedsType isEqualToString:@"article"] && model.isBigPic == 0 && model.images.count == 3){
+        WFImagesNewsCell *images = [tableView dequeueReusableCellWithIdentifier:@"imagesNews" forIndexPath:indexPath];
+        images.remove = ^(UITableViewCell *cell,CGPoint point){
+            NSIndexPath *indexPath = [tableView indexPathForCell:cell];
+            [self removeAtIndexPath:indexPath showPoint:point upLoadModel:model];
+        };
+        
+        images.model = model;
+        return images;
+    }else{
+        WFNewsTextCell *news = [tableView dequeueReusableCellWithIdentifier:@"newsText" forIndexPath:indexPath];
+//        news.remove = ^(UITableViewCell *cell,CGPoint point){
+//            NSIndexPath *indexPath = [tableView indexPathForCell:cell];
+//            [self removeAtIndexPath:indexPath showPoint:point upLoadModel:model];
+//        };
+        news.model = model;
+        return news;
+    }
 
+}
 
+- (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath{
+    KMNewsModel *model = self.newsArray[indexPath.row];
+    if ([model isKindOfClass:[NSString class]]) {
+        return 40;
+    }
+    if (model.ad_id) {
+        if ([self.channel isEqualToString:@"video"]) {
+            return kWFScale(251);
+        }
+    }
+//    if ([model.feedsType isEqualToString:@"article"] && model.isBigPic == 0 && model.images.count == 3) {
+//        return [tableView fd_heightForCellWithIdentifier:@"imagesNews"  cacheByIndexPath:indexPath configuration:^(WFImagesNewsCell *cell) {
+//            cell.model = model;
+//        }];
+//    }else if (([model.feedsType isEqualToString:@"article"] || [model.feedsType isEqualToString:@"video"]) && model.isBigPic == 0 && (model.images.count == 1 || model.images.count == 2)){
+//        return 110;
+//    }else if (([model.feedsType isEqualToString:@"article"] || [model.feedsType isEqualToString:@"video"]) && model.isBigPic == 1 && model.images.count == 1){
+//        
+//        if ([self.channel isEqualToString:@"video"]) {
+//            return kWFScale(251);
+//        }
+//        if([model.feedsType isEqualToString:@"article"]){
+//            return [tableView fd_heightForCellWithIdentifier:@"bigImagenews"  cacheByIndexPath:indexPath configuration:^(WFBigImageNewsCell *cell) {
+//                cell.channel = self.channel;
+//                cell.model = model;
+//            }];
+//        }else{
+//            
+//            return [tableView fd_heightForCellWithIdentifier:@"videoNews"  cacheByIndexPath:indexPath configuration:^(WFVideoNewsCell *cell) {
+//                cell.model = model;
+//            }];
+//        }
+//        
+//    }else{
+//        return [tableView fd_heightForCellWithIdentifier:@"newsText"  cacheByIndexPath:indexPath configuration:^(WFNewsTextCell *cell) {
+//            cell.model = model;
+//        }];
+//    }
+    return 40;
+
+}
+#pragma mark - RegisterCell
+
+- (void)registerCell{
+    self.tableView.separatorStyle = UITableViewCellSeparatorStyleNone;
+    // 新闻cell 文字新闻cell
+    [self.tableView registerNib:[UINib nibWithNibName:NSStringFromClass([WFNewsTextCell class]) bundle:nil] forCellReuseIdentifier:@"newsText"];
+    // 图文cell
+    [self.tableView registerNib:[UINib nibWithNibName:NSStringFromClass([WFImageTextNews class]) bundle:nil] forCellReuseIdentifier:@"imagesText"];
+    // 多图cell
+    [self.tableView registerNib:[UINib nibWithNibName:NSStringFromClass([WFImagesNewsCell class]) bundle:nil] forCellReuseIdentifier:@"imagesNews"];
+    // 大图Cell
+    [self.tableView registerNib:[UINib nibWithNibName:NSStringFromClass([WFBigImageNewsCell class]) bundle:nil] forCellReuseIdentifier:@"bigImagenews"];
+    // 大图视频Cell
+    [self.tableView registerNib:[UINib nibWithNibName:NSStringFromClass([WFVideoNewsCell class]) bundle:nil] forCellReuseIdentifier:@"videoNews"];
+    // 小图视频cell
+    [self.tableView registerNib:[UINib nibWithNibName:NSStringFromClass([WFVideoTextCell class]) bundle:nil] forCellReuseIdentifier:@"videoText"];
+    
+//    [self.tableView registerNib:[UINib nibWithNibName:NSStringFromClass([WFRefreshCell class]) bundle:nil] forCellReuseIdentifier:@"WFRefresh"];
+//    
+//    [self.tableView registerNib:[UINib nibWithNibName:NSStringFromClass([WFNewsMovieCell class]) bundle:nil] forCellReuseIdentifier:@"WFNewsMovie"];
+//    
+//    [self.tableView registerNib:[UINib nibWithNibName:NSStringFromClass([WFNewsADCell class]) bundle:nil] forCellReuseIdentifier:@"WFNewsAD"];
+    
+    
+}
+#pragma mark - removeNews
+- (void)removeAtIndexPath:(NSIndexPath *)indexPath showPoint:(CGPoint)point upLoadModel:(KMNewsModel *)model{
+    [ShieldModule showShieldViewWithPoint:point completed:^{
+        [self.newsArray removeObjectAtIndex:indexPath.row];
+        [self.tableView deleteRowsAtIndexPaths:@[[NSIndexPath indexPathForRow:indexPath.row inSection:indexPath.section]] withRowAnimation:UITableViewRowAnimationAutomatic];
+//        [self showTipView:@"将减少推荐类似内容"];
+//        [self uploadDislikeWithModel:model];
+    } canceled:nil];
+}
+#pragma mark lazy
+- (NSMutableArray *)newsArray{
+
+    if (_newsArray == nil) {
+        _newsArray = [NSMutableArray array];
+    }
+    return _newsArray;
+}
 @end

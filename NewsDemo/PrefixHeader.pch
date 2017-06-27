@@ -20,6 +20,11 @@
 #import "NSString+WFURLEncode.h"
 #import "WFModel.h"
 #import "MJExtension.h"
+#import "UIViewExt.h"
+
+//#import "SDWebImageManager.h"
+#import "UIImageView+WebCache.h"
+
 #endif
 
 

@@ -8,5 +8,7 @@ target 'NewsDemo' do
     pod 'Realm/Headers'
     pod 'WFUtils', '~> 1.1.3'
     pod "MagicalRecord"
+    pod 'SDWebImage'
+
     use_frameworks!
 end

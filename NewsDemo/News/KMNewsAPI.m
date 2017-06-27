@@ -20,7 +20,7 @@
         if (response && [response isKindOfClass:[WFModel class]]) {
             WFModel *model = response;
             NSLog(@"response=%@",response);
-            if (model.error_code == 0) {
+            if ([model.error_code integerValue]== 0) {
                 NSMutableArray *arr = [NSMutableArray array];
                 if (!model.data || ![model.data isKindOfClass:[NSDictionary class]]) {
                     return ;
