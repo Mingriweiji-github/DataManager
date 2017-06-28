@@ -21,11 +21,13 @@ NS_ASSUME_NONNULL_BEGIN
 @property (nullable, nonatomic, copy) NSString *feedsType;
 @property (nullable, nonatomic, copy) NSString *from;
 @property (nonatomic) int64_t group_id;
-@property (nullable, nonatomic, retain) NSObject *images;
+@property (nullable, nonatomic, retain) NSArray *images;
 @property (nonatomic) int16_t isBigPic;
 @property (nonatomic) int64_t item_id;
 @property (nullable, nonatomic, copy) NSString *log_extra;
 @property (nonatomic) int16_t runtime;
+@property (nonatomic) BOOL isSelect;
+
 @property (nullable, nonatomic, copy) NSString *tag;
 @property (nullable, nonatomic, copy) NSString *title;
 @property (nullable, nonatomic, copy) NSString *url;

@@ -67,7 +67,9 @@
                 [_newsArray addObjectsFromArray:mCache];
             }
             
-            [self saveWithContext];
+            [self saveContextWithNews:_newsArray];
+//            [[NewsCoreDataManager manager] insertCoreData:_newsArray];
+            
         }
         dispatch_async(dispatch_get_main_queue(), ^{
             [self.tableView reloadData];
@@ -225,9 +227,26 @@
 - (NSMutableArray *)transform:(NSArray *)cacheArr{
     NSMutableArray *mArr = [NSMutableArray new];
     if (cacheArr && cacheArr.count) {
-        for (KMNewsModel *model in cacheArr) {
-            NSLog(@"title=%@",model.title);
-            NSLog(@"image=%@",model.images);
+        for (NewsCache *cache in cacheArr) {
+            NSLog(@"title=%@",cache.title);
+            NSLog(@"image=%@",cache.images);
+            KMNewsModel *model = [KMNewsModel new];
+            model.title = cache.title;
+            model.runtime = cache.runtime;
+            model.from = cache.from;
+            model.feedsType = cache.feedsType;
+            if (cache.images) {
+                model.images = cache.images;
+            }
+            model.url = cache.url;
+            model.elapseTime = cache.elapseTime;
+            model.runtime = cache.runtime;
+            model.isBigPic = cache.isBigPic;
+            model.ad_id = cache.ad_id;
+            model.group_id = cache.group_id;
+            model.item_id = cache.item_id;
+            model.log_extra = cache.log_extra;
+            model.tag = cache.tag;
             [mArr addObject:model];
         }
     }
@@ -242,12 +261,12 @@
 //        [self uploadDislikeWithModel:model];
     } canceled:nil];
 }
-#pragma mark save
-- (void)saveWithContext{
+#pragma mark - cache newsArray
+- (void)saveContextWithNews:(NSMutableArray *)news{
     NSInteger index = 0;
     [[NewsCoreDataManager manager] removeCache];
     NSManagedObjectContext *ctx = [NewsCoreDataManager manager].mainContext;
-    for (KMNewsModel *model in _newsArray) {
+    for (KMNewsModel *model in news) {
         if ([model isKindOfClass:[NSString class]]) {
             continue;
         }
@@ -258,19 +277,24 @@
         //Managed Object
         NewsCache *cache = [NSEntityDescription insertNewObjectForEntityForName:@"NewsCache" inManagedObjectContext:ctx];
         [cache insertWithModel:model];
+        
         if ([ctx hasChanges]) {
-            [[NewsCoreDataManager manager] saveWithContext:ctx];
+            NSError *error;
+            if (![ctx save:&error]) {
+                NSLog(@"不能保存：%@",[error localizedDescription]);
+            }else{
+                [[NewsCoreDataManager manager] saveWithContext:ctx];
+            }
         }
     }
 }
-
-#pragma mark - cache data
 - (void)loadCacheData{
     NSArray *cache = [[NewsCoreDataManager manager] getNewsCache];
     NSMutableArray *mCache = [self transform:cache];
     if (mCache && mCache.count > 0 && _newsArray.count == 0) {
         [_newsArray addObjectsFromArray:mCache];
     }
+    NSLog(@"count=%ld",_newsArray.count);
     dispatch_async(dispatch_get_main_queue(), ^{
         [self.tableView reloadData];
     });

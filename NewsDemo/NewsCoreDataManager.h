@@ -15,10 +15,12 @@ NS_ASSUME_NONNULL_BEGIN
 @property (nonatomic, strong,readonly) NSManagedObjectContext *bgContext;
 
 + (instancetype)manager;
-
+//插入数据
 - (void)saveWithContext:(NSManagedObjectContext *)ctx;
+- (void)insertCoreData:(NSMutableArray*)dataArray;
+
 - (NSArray *)getNewsCache;
+
 - (void)removeCache;
-- (NSArray *)getAllCache;
 @end
 NS_ASSUME_NONNULL_END

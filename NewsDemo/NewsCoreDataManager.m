@@ -112,17 +112,36 @@
 
     return _mainContext;
 }
-- (NSArray *)getAllCache{
-
+//插入数据
+- (void)insertCoreData:(NSMutableArray*)dataArray
+{
     NSManagedObjectContext *ctx = [NewsCoreDataManager manager].mainContext;
-    NSFetchRequest *request = [NewsCache fetchRequest];
-    [request setIncludesPropertyValues:NO];
-
-    NSArray *result = [ctx executeFetchRequest:request error:nil];
-    if (result && result.count) {
-        return result;
-    }else{
-        return @[];
+    for (NewsCache *model in dataArray) {
+        
+        NewsCache *newsInfo = [NSEntityDescription insertNewObjectForEntityForName:@"NewsCache" inManagedObjectContext:ctx];
+        newsInfo.title = model.title;
+        newsInfo.runtime = model.runtime;
+        newsInfo.from = model.from;
+        newsInfo.feedsType = model.feedsType;
+        if (model.images) {
+            newsInfo.images = model.images;
+        }
+        newsInfo.url = model.url;
+        newsInfo.elapseTime = model.elapseTime;
+        newsInfo.runtime = model.runtime;
+        newsInfo.isBigPic = model.isBigPic;
+        newsInfo.ad_id = model.ad_id;
+        newsInfo.group_id = model.group_id;
+        newsInfo.item_id = model.item_id;
+        newsInfo.log_extra = model.log_extra;
+        newsInfo.tag = model.tag;
+        newsInfo.isSelect = model.isSelect;
+        
+        NSError *error;
+        if(![ctx save:&error])
+        {
+            NSLog(@"不能保存：%@",[error localizedDescription]);
+        }
     }
 }
 - (NSArray *)getNewsCache{
@@ -130,10 +149,11 @@
     NSManagedObjectContext *ctx = [[NewsCoreDataManager manager] mainContext];
     NSFetchRequest *request = [NewsCache fetchRequest];
     request.includesPropertyValues = NO;
-//    request.fetchLimit = 20;
+    request.fetchLimit = 20;
+    request.includesPendingChanges = NO;
     
     NSArray *result = [ctx executeFetchRequest:request error:nil];
-    
+    NSLog(@"获取所有缓存数=%ld,%@",result.count,result);
     if (result && result.count) {
         return result;
     }else{

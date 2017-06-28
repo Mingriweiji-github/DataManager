@@ -28,6 +28,7 @@
         self.item_id = model.item_id;
         self.log_extra = model.log_extra;
         self.tag = model.tag;
+        self.isSelect = model.isSelect;
     }else{
         NSLog(@"NewsCache model 为空");
     }
