@@ -2,7 +2,7 @@
 //  NewsCache+CoreDataProperties.m
 //  
 //
-//  Created by Seven on 2017/6/28.
+//  Created by M_Li on 2017/6/28.
 //
 //
 

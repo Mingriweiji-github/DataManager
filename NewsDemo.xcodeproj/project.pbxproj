@@ -33,10 +33,9 @@
 		144D96D51F029EF00086BBC4 /* WFImageTextNews.m in Sources */ = {isa = PBXBuildFile; fileRef = 144D96C21F029EF00086BBC4 /* WFImageTextNews.m */; };
 		144D96D61F029EF00086BBC4 /* WFVideoTextCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 144D96C61F029EF00086BBC4 /* WFVideoTextCell.xib */; };
 		146C3E631F02B6FC001AC6D3 /* ShieldModule.m in Sources */ = {isa = PBXBuildFile; fileRef = 146C3E621F02B6FC001AC6D3 /* ShieldModule.m */; };
-		146C3E6C1F03266E001AC6D3 /* NewsDB.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 146C3E6A1F03266E001AC6D3 /* NewsDB.xcdatamodeld */; };
-		146C3E771F0328FB001AC6D3 /* NewsCache+CoreDataClass.m in Sources */ = {isa = PBXBuildFile; fileRef = 146C3E741F0328FB001AC6D3 /* NewsCache+CoreDataClass.m */; };
-		146C3E781F0328FB001AC6D3 /* NewsCache+CoreDataProperties.m in Sources */ = {isa = PBXBuildFile; fileRef = 146C3E761F0328FB001AC6D3 /* NewsCache+CoreDataProperties.m */; };
 		146C3E7B1F032A51001AC6D3 /* NewsCoreDataManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 146C3E7A1F032A51001AC6D3 /* NewsCoreDataManager.m */; };
+		C7607C6E1F037DA3002F6EF0 /* NewsCache+CoreDataClass.m in Sources */ = {isa = PBXBuildFile; fileRef = C7607C6B1F037DA3002F6EF0 /* NewsCache+CoreDataClass.m */; };
+		C7607C6F1F037DA3002F6EF0 /* NewsCache+CoreDataProperties.m in Sources */ = {isa = PBXBuildFile; fileRef = C7607C6D1F037DA3002F6EF0 /* NewsCache+CoreDataProperties.m */; };
 		C772C3681F02083C0046678E /* NSString+WFURLEncode.m in Sources */ = {isa = PBXBuildFile; fileRef = C772C35F1F02083C0046678E /* NSString+WFURLEncode.m */; };
 		C772C3691F02083C0046678E /* UIViewExt.m in Sources */ = {isa = PBXBuildFile; fileRef = C772C3611F02083C0046678E /* UIViewExt.m */; };
 		C772C3741F0229660046678E /* KMNetWorkManager.m in Sources */ = {isa = PBXBuildFile; fileRef = C772C3711F0229660046678E /* KMNetWorkManager.m */; };
@@ -107,14 +106,14 @@
 		146C3E611F02B6FC001AC6D3 /* ShieldModule.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ShieldModule.h; sourceTree = "<group>"; };
 		146C3E621F02B6FC001AC6D3 /* ShieldModule.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ShieldModule.m; sourceTree = "<group>"; };
 		146C3E6B1F03266E001AC6D3 /* NewsDB.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = NewsDB.xcdatamodel; sourceTree = "<group>"; };
-		146C3E731F0328FB001AC6D3 /* NewsCache+CoreDataClass.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NewsCache+CoreDataClass.h"; sourceTree = "<group>"; };
-		146C3E741F0328FB001AC6D3 /* NewsCache+CoreDataClass.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NewsCache+CoreDataClass.m"; sourceTree = "<group>"; };
-		146C3E751F0328FB001AC6D3 /* NewsCache+CoreDataProperties.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NewsCache+CoreDataProperties.h"; sourceTree = "<group>"; };
-		146C3E761F0328FB001AC6D3 /* NewsCache+CoreDataProperties.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NewsCache+CoreDataProperties.m"; sourceTree = "<group>"; };
 		146C3E791F032A51001AC6D3 /* NewsCoreDataManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NewsCoreDataManager.h; sourceTree = "<group>"; };
 		146C3E7A1F032A51001AC6D3 /* NewsCoreDataManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NewsCoreDataManager.m; sourceTree = "<group>"; };
 		627DF82E776872C2E52206A9 /* Pods-NewsDemo.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-NewsDemo.debug.xcconfig"; path = "Pods/Target Support Files/Pods-NewsDemo/Pods-NewsDemo.debug.xcconfig"; sourceTree = "<group>"; };
 		B62665A7B3F286C98FEAE45F /* Pods_NewsDemo.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_NewsDemo.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		C7607C6A1F037DA3002F6EF0 /* NewsCache+CoreDataClass.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NewsCache+CoreDataClass.h"; sourceTree = "<group>"; };
+		C7607C6B1F037DA3002F6EF0 /* NewsCache+CoreDataClass.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NewsCache+CoreDataClass.m"; sourceTree = "<group>"; };
+		C7607C6C1F037DA3002F6EF0 /* NewsCache+CoreDataProperties.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NewsCache+CoreDataProperties.h"; sourceTree = "<group>"; };
+		C7607C6D1F037DA3002F6EF0 /* NewsCache+CoreDataProperties.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NewsCache+CoreDataProperties.m"; sourceTree = "<group>"; };
 		C772C35E1F02083C0046678E /* NSString+WFURLEncode.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSString+WFURLEncode.h"; sourceTree = "<group>"; };
 		C772C35F1F02083C0046678E /* NSString+WFURLEncode.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSString+WFURLEncode.m"; sourceTree = "<group>"; };
 		C772C3601F02083C0046678E /* UIViewExt.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UIViewExt.h; sourceTree = "<group>"; };
@@ -185,10 +184,7 @@
 				141ED0541F0148B50063B6D8 /* AppDelegate.m */,
 				141ED0561F0148B50063B6D8 /* ViewController.h */,
 				141ED0571F0148B50063B6D8 /* ViewController.m */,
-				146C3E691F03262C001AC6D3 /* CoreDataManager */,
 				C772C3761F0229AD0046678E /* News */,
-				C772C36F1F0229660046678E /* Utils */,
-				C772C3591F02083C0046678E /* Categories */,
 				141ED0591F0148B50063B6D8 /* Main.storyboard */,
 				141ED05F1F0148B50063B6D8 /* Assets.xcassets */,
 				141ED0611F0148B50063B6D8 /* LaunchScreen.storyboard */,
@@ -260,15 +256,16 @@
 		146C3E691F03262C001AC6D3 /* CoreDataManager */ = {
 			isa = PBXGroup;
 			children = (
-				146C3E731F0328FB001AC6D3 /* NewsCache+CoreDataClass.h */,
-				146C3E741F0328FB001AC6D3 /* NewsCache+CoreDataClass.m */,
-				146C3E751F0328FB001AC6D3 /* NewsCache+CoreDataProperties.h */,
-				146C3E761F0328FB001AC6D3 /* NewsCache+CoreDataProperties.m */,
-				146C3E6A1F03266E001AC6D3 /* NewsDB.xcdatamodeld */,
+				C7607C6A1F037DA3002F6EF0 /* NewsCache+CoreDataClass.h */,
+				C7607C6B1F037DA3002F6EF0 /* NewsCache+CoreDataClass.m */,
+				C7607C6C1F037DA3002F6EF0 /* NewsCache+CoreDataProperties.h */,
+				C7607C6D1F037DA3002F6EF0 /* NewsCache+CoreDataProperties.m */,
 				146C3E791F032A51001AC6D3 /* NewsCoreDataManager.h */,
 				146C3E7A1F032A51001AC6D3 /* NewsCoreDataManager.m */,
+				146C3E6A1F03266E001AC6D3 /* NewsDB.xcdatamodeld */,
 			);
 			name = CoreDataManager;
+			path = ..;
 			sourceTree = "<group>";
 		};
 		53D5CDE59280331928977DB3 /* Frameworks */ = {
@@ -296,7 +293,8 @@
 				C772C3601F02083C0046678E /* UIViewExt.h */,
 				C772C3611F02083C0046678E /* UIViewExt.m */,
 			);
-			path = Categories;
+			name = Categories;
+			path = ../Categories;
 			sourceTree = "<group>";
 		};
 		C772C36F1F0229660046678E /* Utils */ = {
@@ -307,15 +305,19 @@
 				C772C3721F0229660046678E /* KMUtils.h */,
 				C772C3731F0229660046678E /* KMUtils.m */,
 			);
-			path = Utils;
+			name = Utils;
+			path = ../Utils;
 			sourceTree = "<group>";
 		};
 		C772C3761F0229AD0046678E /* News */ = {
 			isa = PBXGroup;
 			children = (
+				146C3E691F03262C001AC6D3 /* CoreDataManager */,
+				144D96AE1F029EC50086BBC4 /* cells */,
+				C772C3591F02083C0046678E /* Categories */,
+				C772C36F1F0229660046678E /* Utils */,
 				146C3E611F02B6FC001AC6D3 /* ShieldModule.h */,
 				146C3E621F02B6FC001AC6D3 /* ShieldModule.m */,
-				144D96AE1F029EC50086BBC4 /* cells */,
 				C772C3771F0229AD0046678E /* KMNewsAPI.h */,
 				C772C3781F0229AD0046678E /* KMNewsAPI.m */,
 				C772C3791F0229AD0046678E /* KMNewsModel.h */,
@@ -521,21 +523,20 @@
 				144D96C91F029EF00086BBC4 /* WFImagesNewsCell.m in Sources */,
 				146C3E631F02B6FC001AC6D3 /* ShieldModule.m in Sources */,
 				C772C37B1F0229AD0046678E /* KMNewsAPI.m in Sources */,
-				146C3E771F0328FB001AC6D3 /* NewsCache+CoreDataClass.m in Sources */,
 				144D96D01F029EF00086BBC4 /* WFNewsTextCell.m in Sources */,
 				146C3E7B1F032A51001AC6D3 /* NewsCoreDataManager.m in Sources */,
 				144D96CE1F029EF00086BBC4 /* WFNewsMovieCell.m in Sources */,
+				C7607C6E1F037DA3002F6EF0 /* NewsCache+CoreDataClass.m in Sources */,
 				144D96D51F029EF00086BBC4 /* WFImageTextNews.m in Sources */,
 				C772C3741F0229660046678E /* KMNetWorkManager.m in Sources */,
 				C772C3691F02083C0046678E /* UIViewExt.m in Sources */,
 				141ED0551F0148B50063B6D8 /* AppDelegate.m in Sources */,
+				C7607C6F1F037DA3002F6EF0 /* NewsCache+CoreDataProperties.m in Sources */,
 				C772C3681F02083C0046678E /* NSString+WFURLEncode.m in Sources */,
-				146C3E6C1F03266E001AC6D3 /* NewsDB.xcdatamodeld in Sources */,
 				144D96C71F029EF00086BBC4 /* WFBigImageNewsCell.m in Sources */,
 				141ED0521F0148B50063B6D8 /* main.m in Sources */,
 				C772C3751F0229660046678E /* KMUtils.m in Sources */,
 				144D96D21F029EF00086BBC4 /* WFVideoNewsCell.m in Sources */,
-				146C3E781F0328FB001AC6D3 /* NewsCache+CoreDataProperties.m in Sources */,
 				C772C37C1F0229AD0046678E /* KMNewsModel.m in Sources */,
 				144D96D41F029EF00086BBC4 /* WFVideoTextCell.m in Sources */,
 			);

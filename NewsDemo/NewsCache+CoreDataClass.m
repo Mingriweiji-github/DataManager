@@ -2,7 +2,7 @@
 //  NewsCache+CoreDataClass.m
 //  
 //
-//  Created by Seven on 2017/6/28.
+//  Created by M_Li on 2017/6/28.
 //
 //
 
@@ -10,7 +10,7 @@
 
 @implementation NewsCache
 - (void)cacheWithModel:(KMNewsModel *)model{
-
+    
     if (model) {
         self.title = model.title;
         self.runtime = model.runtime;
@@ -29,7 +29,8 @@
         self.log_extra = model.log_extra;
         self.tag = model.tag;
     }else{
-        NSLog(@"NewsCache+CoreDataClass model 为空");
+        NSLog(@"NewsCache model 为空");
     }
 }
+
 @end
