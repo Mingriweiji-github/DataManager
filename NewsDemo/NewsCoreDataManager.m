@@ -37,6 +37,8 @@
             saved = [ctx.parentContext save:&err];
             if (!saved) {
                 NSLog(@"ctx parent saved error:%@",err);
+            }else{
+                NSLog(@"ctx saved success");
             }
             
         }];
@@ -53,7 +55,9 @@
 - (NSManagedObjectModel *)managedObjectModel{
 
     if (!_managedObjectModel) {
-        _managedObjectModel = [[NSManagedObjectModel alloc] initWithContentsOfURL:[[NSBundle mainBundle] URLForResource:@"NewsDB" withExtension:@"momd"]];
+        NSURL *modelURL = [[NSBundle mainBundle] URLForResource:@"NewsDB" withExtension:@"momd"];
+
+        _managedObjectModel = [[NSManagedObjectModel alloc] initWithContentsOfURL:modelURL];
     }
     return _managedObjectModel;
 }
@@ -63,7 +67,7 @@
     }
     NSLog(@"%@", [self applicationDocumentsDirectory]);
     _persistentStoreCoordinator = [[NSPersistentStoreCoordinator alloc] initWithManagedObjectModel:[self managedObjectModel]];
-    NSURL *storeURL = [[self applicationDocumentsDirectory] URLByAppendingPathComponent:@"WFDiscoverDB.sqlite"];
+    NSURL *storeURL = [[self applicationDocumentsDirectory] URLByAppendingPathComponent:@"NewsDB.sqlite"];
     NSError *error = nil;
     NSDictionary *options = [NSDictionary dictionaryWithObjectsAndKeys:
                              @(YES), NSMigratePersistentStoresAutomaticallyOption,
@@ -126,9 +130,10 @@
     NSManagedObjectContext *ctx = [[NewsCoreDataManager manager] mainContext];
     NSFetchRequest *request = [NewsCache fetchRequest];
     request.includesPropertyValues = NO;
-    request.fetchLimit = 20;
+//    request.fetchLimit = 20;
     
     NSArray *result = [ctx executeFetchRequest:request error:nil];
+    
     if (result && result.count) {
         return result;
     }else{

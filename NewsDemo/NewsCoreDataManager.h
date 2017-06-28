@@ -15,6 +15,7 @@ NS_ASSUME_NONNULL_BEGIN
 @property (nonatomic, strong,readonly) NSManagedObjectContext *bgContext;
 
 + (instancetype)manager;
+
 - (void)saveWithContext:(NSManagedObjectContext *)ctx;
 - (NSArray *)getNewsCache;
 - (void)removeCache;

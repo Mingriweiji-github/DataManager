@@ -20,7 +20,8 @@
 #import "ShieldModule.h"
 
 #import "UITableView+FDTemplateLayoutCell.h"
-
+#import "NewsCoreDataManager.h"
+#import "NewsCache+CoreDataClass.h"
 @interface ViewController ()
 
 @property (weak, nonatomic) IBOutlet UITableView *tableView;
@@ -42,6 +43,8 @@
     NSTimeInterval interval = [[NSDate date] timeIntervalSince1970];
     NSString *time = [NSString stringWithFormat:@"%.f",interval];
     
+    
+    
     NSDictionary *params = @{
                              @"platform" : @"ios",
                              @"userID" : @"80e5b8ddf0364b9c99ae2e44a4b6a60c",
@@ -58,6 +61,13 @@
             _newsArray = response;
             NSLog(@"count=%ld,_newsArray=%@",_newsArray.count,_newsArray);
 
+            NSArray *cache = [[NewsCoreDataManager manager] getNewsCache];
+            NSMutableArray *mCache = [self transform:cache];
+            if (mCache && mCache.count) {
+                [_newsArray addObjectsFromArray:mCache];
+            }
+            
+            [self saveWithContext];
         }
         dispatch_async(dispatch_get_main_queue(), ^{
             [self.tableView reloadData];
@@ -66,6 +76,8 @@
     } failure:^(NSError * _Nonnull error) {
         
         NSLog(@"news error=%@",error);
+        [self loadCacheData];
+        
     }];
 
 }
@@ -209,8 +221,17 @@
 //    [self.tableView registerNib:[UINib nibWithNibName:NSStringFromClass([WFNewsMovieCell class]) bundle:nil] forCellReuseIdentifier:@"WFNewsMovie"];
 //    
 //    [self.tableView registerNib:[UINib nibWithNibName:NSStringFromClass([WFNewsADCell class]) bundle:nil] forCellReuseIdentifier:@"WFNewsAD"];
-    
-    
+}
+- (NSMutableArray *)transform:(NSArray *)cacheArr{
+    NSMutableArray *mArr = [NSMutableArray new];
+    if (cacheArr && cacheArr.count) {
+        for (KMNewsModel *model in cacheArr) {
+            NSLog(@"title=%@",model.title);
+            NSLog(@"image=%@",model.images);
+            [mArr addObject:model];
+        }
+    }
+    return mArr;
 }
 #pragma mark - removeNews
 - (void)removeAtIndexPath:(NSIndexPath *)indexPath showPoint:(CGPoint)point upLoadModel:(KMNewsModel *)model{
@@ -221,6 +242,40 @@
 //        [self uploadDislikeWithModel:model];
     } canceled:nil];
 }
+#pragma mark save
+- (void)saveWithContext{
+    NSInteger index = 0;
+    [[NewsCoreDataManager manager] removeCache];
+    NSManagedObjectContext *ctx = [NewsCoreDataManager manager].mainContext;
+    for (KMNewsModel *model in _newsArray) {
+        if ([model isKindOfClass:[NSString class]]) {
+            continue;
+        }
+        index ++;
+        if (index > 20) {
+            break;
+        }
+        //Managed Object
+        NewsCache *cache = [NSEntityDescription insertNewObjectForEntityForName:@"NewsCache" inManagedObjectContext:ctx];
+        [cache insertWithModel:model];
+        if ([ctx hasChanges]) {
+            [[NewsCoreDataManager manager] saveWithContext:ctx];
+        }
+    }
+}
+
+#pragma mark - cache data
+- (void)loadCacheData{
+    NSArray *cache = [[NewsCoreDataManager manager] getNewsCache];
+    NSMutableArray *mCache = [self transform:cache];
+    if (mCache && mCache.count > 0 && _newsArray.count == 0) {
+        [_newsArray addObjectsFromArray:mCache];
+    }
+    dispatch_async(dispatch_get_main_queue(), ^{
+        [self.tableView reloadData];
+    });
+}
+
 #pragma mark lazy
 - (NSMutableArray *)newsArray{
 

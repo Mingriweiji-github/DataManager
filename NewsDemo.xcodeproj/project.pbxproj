@@ -34,8 +34,9 @@
 		144D96D61F029EF00086BBC4 /* WFVideoTextCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 144D96C61F029EF00086BBC4 /* WFVideoTextCell.xib */; };
 		146C3E631F02B6FC001AC6D3 /* ShieldModule.m in Sources */ = {isa = PBXBuildFile; fileRef = 146C3E621F02B6FC001AC6D3 /* ShieldModule.m */; };
 		146C3E7B1F032A51001AC6D3 /* NewsCoreDataManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 146C3E7A1F032A51001AC6D3 /* NewsCoreDataManager.m */; };
-		C7607C6E1F037DA3002F6EF0 /* NewsCache+CoreDataClass.m in Sources */ = {isa = PBXBuildFile; fileRef = C7607C6B1F037DA3002F6EF0 /* NewsCache+CoreDataClass.m */; };
-		C7607C6F1F037DA3002F6EF0 /* NewsCache+CoreDataProperties.m in Sources */ = {isa = PBXBuildFile; fileRef = C7607C6D1F037DA3002F6EF0 /* NewsCache+CoreDataProperties.m */; };
+		C7607C701F03943B002F6EF0 /* NewsDB.xcdatamodeld in Resources */ = {isa = PBXBuildFile; fileRef = 146C3E6A1F03266E001AC6D3 /* NewsDB.xcdatamodeld */; };
+		C7607C711F03948E002F6EF0 /* NewsCache+CoreDataClass.m in Sources */ = {isa = PBXBuildFile; fileRef = C7607C6B1F037DA3002F6EF0 /* NewsCache+CoreDataClass.m */; };
+		C7607C721F03948E002F6EF0 /* NewsCache+CoreDataProperties.m in Sources */ = {isa = PBXBuildFile; fileRef = C7607C6D1F037DA3002F6EF0 /* NewsCache+CoreDataProperties.m */; };
 		C772C3681F02083C0046678E /* NSString+WFURLEncode.m in Sources */ = {isa = PBXBuildFile; fileRef = C772C35F1F02083C0046678E /* NSString+WFURLEncode.m */; };
 		C772C3691F02083C0046678E /* UIViewExt.m in Sources */ = {isa = PBXBuildFile; fileRef = C772C3611F02083C0046678E /* UIViewExt.m */; };
 		C772C3741F0229660046678E /* KMNetWorkManager.m in Sources */ = {isa = PBXBuildFile; fileRef = C772C3711F0229660046678E /* KMNetWorkManager.m */; };
@@ -396,7 +397,8 @@
 				TargetAttributes = {
 					141ED04C1F0148B50063B6D8 = {
 						CreatedOnToolsVersion = 8.3.2;
-						ProvisioningStyle = Automatic;
+						DevelopmentTeam = 256463TRD5;
+						ProvisioningStyle = Manual;
 					};
 					141ED0681F0148B50063B6D8 = {
 						CreatedOnToolsVersion = 8.3.2;
@@ -435,6 +437,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				C7607C701F03943B002F6EF0 /* NewsDB.xcdatamodeld in Resources */,
 				144D96CB1F029EF00086BBC4 /* WFImageTextNews.xib in Resources */,
 				141ED0631F0148B50063B6D8 /* LaunchScreen.storyboard in Resources */,
 				144D96CA1F029EF00086BBC4 /* WFImagesNewsCell.xib in Resources */,
@@ -518,6 +521,8 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				C7607C711F03948E002F6EF0 /* NewsCache+CoreDataClass.m in Sources */,
+				C7607C721F03948E002F6EF0 /* NewsCache+CoreDataProperties.m in Sources */,
 				144D96CC1F029EF00086BBC4 /* WFNewsADCell.m in Sources */,
 				141ED0581F0148B50063B6D8 /* ViewController.m in Sources */,
 				144D96C91F029EF00086BBC4 /* WFImagesNewsCell.m in Sources */,
@@ -526,12 +531,10 @@
 				144D96D01F029EF00086BBC4 /* WFNewsTextCell.m in Sources */,
 				146C3E7B1F032A51001AC6D3 /* NewsCoreDataManager.m in Sources */,
 				144D96CE1F029EF00086BBC4 /* WFNewsMovieCell.m in Sources */,
-				C7607C6E1F037DA3002F6EF0 /* NewsCache+CoreDataClass.m in Sources */,
 				144D96D51F029EF00086BBC4 /* WFImageTextNews.m in Sources */,
 				C772C3741F0229660046678E /* KMNetWorkManager.m in Sources */,
 				C772C3691F02083C0046678E /* UIViewExt.m in Sources */,
 				141ED0551F0148B50063B6D8 /* AppDelegate.m in Sources */,
-				C7607C6F1F037DA3002F6EF0 /* NewsCache+CoreDataProperties.m in Sources */,
 				C772C3681F02083C0046678E /* NSString+WFURLEncode.m in Sources */,
 				144D96C71F029EF00086BBC4 /* WFBigImageNewsCell.m in Sources */,
 				141ED0521F0148B50063B6D8 /* main.m in Sources */,
@@ -692,10 +695,14 @@
 			baseConfigurationReference = 627DF82E776872C2E52206A9 /* Pods-NewsDemo.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				DEVELOPMENT_TEAM = 256463TRD5;
 				INFOPLIST_FILE = NewsDemo/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.likunming.NewsDemo;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE = "57ef851f-ee76-48d6-81eb-2d93abab611f";
+				PROVISIONING_PROFILE_SPECIFIER = AMWildcardDev;
 			};
 			name = Debug;
 		};
@@ -704,10 +711,13 @@
 			baseConfigurationReference = C88A758677C660B2C084DC02 /* Pods-NewsDemo.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				DEVELOPMENT_TEAM = "";
 				INFOPLIST_FILE = NewsDemo/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.likunming.NewsDemo;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE_SPECIFIER = "";
 			};
 			name = Release;
 		};

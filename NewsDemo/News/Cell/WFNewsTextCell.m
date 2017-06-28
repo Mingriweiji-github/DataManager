@@ -72,11 +72,11 @@
         self.model.isSelect = YES;
         self.newsTitle.textColor = WFColorWithHex(0xB3B0AF);
     }else{
-        if (self.model.isSelect) {
-            self.newsTitle.textColor = WFColorWithHex(0xB3B0AF);
-        }else{
-            self.newsTitle.textColor = [UIColor blackColor];
-        }
+//        if (self.model.isSelect) {
+//            self.newsTitle.textColor = WFColorWithHex(0xB3B0AF);
+//        }else{
+//            self.newsTitle.textColor = [UIColor blackColor];
+//        }
     }
 
     // Configure the view for the selected state

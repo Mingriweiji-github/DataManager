@@ -39,7 +39,7 @@
         
     } fail:^(NSError * _Nonnull error) {
         
-        
+        fail(error);
     }];
 }
 @end

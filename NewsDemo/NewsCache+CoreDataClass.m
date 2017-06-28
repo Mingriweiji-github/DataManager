@@ -9,7 +9,7 @@
 #import "NewsCache+CoreDataClass.h"
 
 @implementation NewsCache
-- (void)cacheWithModel:(KMNewsModel *)model{
+- (void)insertWithModel:(KMNewsModel *)model{
     
     if (model) {
         self.title = model.title;
