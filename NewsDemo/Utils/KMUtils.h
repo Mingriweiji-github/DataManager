@@ -32,4 +32,10 @@ FOUNDATION_EXPORT UIColor * WFColorWithHex(long hex);
 @property (assign, nonatomic) IBInspectable CGFloat  borderWidth;
 @property (strong, nonatomic) IBInspectable UIColor *borderColor;
 @end
+
+@interface UIButton (CornerRadius)
+@property (assign, nonatomic) IBInspectable CGFloat  cornerRadius;
+@property (assign, nonatomic) IBInspectable CGFloat  borderWidth;
+@property (strong, nonatomic) IBInspectable UIColor *borderColor;
+@end
 NS_ASSUME_NONNULL_END

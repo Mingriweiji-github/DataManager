@@ -61,14 +61,15 @@
             _newsArray = response;
             NSLog(@"网络获取数据result.count=%ld",_newsArray.count);
 
-            NSArray *cache = [[NewsCoreDataManager manager] getNewsCache];
-            NSMutableArray *mCache = [self transform:cache];
-            if (mCache && mCache.count) {
-                [_newsArray addObjectsFromArray:mCache];
+            NSArray *cacheArr = [[NewsCoreDataManager manager] getNewsCache];
+            NSMutableArray *cache = [self transformModelArrWithCacheArr:cacheArr];
+            if (cache && cache.count) {
+                [_newsArray addObjectsFromArray:cache];
             }
             
-            [self saveContextWithNews:_newsArray];
-//            [[NewsCoreDataManager manager] insertCoreData:_newsArray];
+//            [self saveContextWithNews:_newsArray];
+            
+            [[NewsCoreDataManager manager] insertCoreData:_newsArray];
             
         }
         dispatch_async(dispatch_get_main_queue(), ^{
@@ -225,9 +226,20 @@
 //    
 //    [self.tableView registerNib:[UINib nibWithNibName:NSStringFromClass([WFNewsADCell class]) bundle:nil] forCellReuseIdentifier:@"WFNewsAD"];
 }
-- (NSMutableArray *)transform:(NSArray *)cacheArr{
+#pragma mark - removeNews
+- (void)removeAtIndexPath:(NSIndexPath *)indexPath showPoint:(CGPoint)point upLoadModel:(KMNewsModel *)model{
+    [ShieldModule showShieldViewWithPoint:point completed:^{
+        [self.newsArray removeObjectAtIndex:indexPath.row];
+        [self.tableView deleteRowsAtIndexPaths:@[[NSIndexPath indexPathForRow:indexPath.row inSection:indexPath.section]] withRowAnimation:UITableViewRowAnimationAutomatic];
+//        [self showTipView:@"将减少推荐类似内容"];
+//        [self uploadDislikeWithModel:model];
+    } canceled:nil];
+}
+#pragma mark - cache newsArray
+- (NSMutableArray *)transformModelArrWithCacheArr:(NSArray *)cacheArr{
     NSMutableArray *mArr = [NSMutableArray new];
     if (cacheArr && cacheArr.count) {
+        
         for (NewsCache *cache in cacheArr) {
             NSLog(@"title=%@",cache.title);
             NSLog(@"image=%@",cache.images);
@@ -253,45 +265,35 @@
     }
     return mArr;
 }
-#pragma mark - removeNews
-- (void)removeAtIndexPath:(NSIndexPath *)indexPath showPoint:(CGPoint)point upLoadModel:(KMNewsModel *)model{
-    [ShieldModule showShieldViewWithPoint:point completed:^{
-        [self.newsArray removeObjectAtIndex:indexPath.row];
-        [self.tableView deleteRowsAtIndexPaths:@[[NSIndexPath indexPathForRow:indexPath.row inSection:indexPath.section]] withRowAnimation:UITableViewRowAnimationAutomatic];
-//        [self showTipView:@"将减少推荐类似内容"];
-//        [self uploadDislikeWithModel:model];
-    } canceled:nil];
-}
-#pragma mark - cache newsArray
-- (void)saveContextWithNews:(NSMutableArray *)news{
-    NSInteger index = 0;
-    [[NewsCoreDataManager manager] removeCache];
-    NSManagedObjectContext *ctx = [NewsCoreDataManager manager].mainContext;
-    for (KMNewsModel *model in news) {
-        if ([model isKindOfClass:[NSString class]]) {
-            continue;
-        }
-        index ++;
-        if (index > 20) {
-            break;
-        }
-        //Managed Object
-        NewsCache *cache = [NSEntityDescription insertNewObjectForEntityForName:@"NewsCache" inManagedObjectContext:ctx];
-        [cache insertWithModel:model];
-        
-        if ([ctx hasChanges]) {
-            NSError *error;
-            if (![ctx save:&error]) {
-                NSLog(@"不能保存：%@",[error localizedDescription]);
-            }else{
-                [[NewsCoreDataManager manager] saveWithContext:ctx];
-            }
-        }
-    }
-}
+//- (void)saveContextWithNews:(NSMutableArray *)news{
+//    NSInteger index = 0;
+//    [[NewsCoreDataManager manager] removeCache];
+//    NSManagedObjectContext *ctx = [NewsCoreDataManager manager].mainContext;
+//    for (KMNewsModel *model in news) {
+//        if ([model isKindOfClass:[NSString class]]) {
+//            continue;
+//        }
+//        index ++;
+//        if (index > 20) {
+//            break;
+//        }
+//        //Managed Object
+//        NewsCache *cache = [NSEntityDescription insertNewObjectForEntityForName:@"NewsCache" inManagedObjectContext:ctx];
+//        [cache insertWithModel:model];
+//        
+//        if ([ctx hasChanges]) {
+//            NSError *error;
+//            if (![ctx save:&error]) {
+//                NSLog(@"不能保存：%@",[error localizedDescription]);
+//            }else{
+//                [[NewsCoreDataManager manager] saveWithContext:ctx];
+//            }
+//        }
+//    }
+//}
 - (void)loadCacheData{
     NSArray *cache = [[NewsCoreDataManager manager] getNewsCache];
-    NSMutableArray *mCache = [self transform:cache];
+    NSMutableArray *mCache = [self transformModelArrWithCacheArr:cache];
     if (mCache && mCache.count > 0 && _newsArray.count == 0) {
         [_newsArray addObjectsFromArray:mCache];
     }
