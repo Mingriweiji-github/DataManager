@@ -59,7 +59,7 @@
         if ([response isKindOfClass:[NSArray class]]) {
             
             _newsArray = response;
-            NSLog(@"count=%ld,_newsArray=%@",_newsArray.count,_newsArray);
+            NSLog(@"网络获取数据result.count=%ld",_newsArray.count);
 
             NSArray *cache = [[NewsCoreDataManager manager] getNewsCache];
             NSMutableArray *mCache = [self transform:cache];
@@ -84,6 +84,7 @@
 
 }
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section{
+    NSLog(@"newsArray.count=%ld",_newsArray.count);
     return self.newsArray.count;
 }
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath{

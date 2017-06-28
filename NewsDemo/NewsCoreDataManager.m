@@ -149,11 +149,11 @@
     NSManagedObjectContext *ctx = [[NewsCoreDataManager manager] mainContext];
     NSFetchRequest *request = [NewsCache fetchRequest];
     request.includesPropertyValues = NO;
-    request.fetchLimit = 20;
+//    request.fetchLimit = 20;
     request.includesPendingChanges = NO;
     
     NSArray *result = [ctx executeFetchRequest:request error:nil];
-    NSLog(@"获取所有缓存数=%ld,%@",result.count,result);
+    NSLog(@"获取缓存result.count=%ld",result.count);
     if (result && result.count) {
         return result;
     }else{
