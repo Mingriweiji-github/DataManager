@@ -60,9 +60,7 @@
             
             _newsArray = response;
             NSLog(@"网络获取数据result.count=%ld",_newsArray.count);
-
-            NSArray *cacheArr = [[NewsCoreDataManager manager] getNewsCache];
-            NSMutableArray *cache = [self transformModelArrWithCacheArr:cacheArr];
+            NSMutableArray *cache = [self transformModelArrWithCacheArr:[[NewsCoreDataManager manager] getNewsCache]];
             if (cache && cache.count) {
                 [_newsArray addObjectsFromArray:cache];
             }
@@ -111,10 +109,10 @@
             return movie;
         }
         WFVideoNewsCell *video = [tableView dequeueReusableCellWithIdentifier:@"videoNews" forIndexPath:indexPath];
-//        video.remove = ^(UITableViewCell *cell,CGPoint point){
-//            NSIndexPath *indexPath = [tableView indexPathForCell:cell];
-//            [self removeAtIndexPath:indexPath showPoint:point upLoadModel:model];
-//        };
+        video.remove = ^(UITableViewCell *cell,CGPoint point){
+            NSIndexPath *indexPath = [tableView indexPathForCell:cell];
+            [self removeAtIndexPath:indexPath showPoint:point upLoadModel:model];
+        };
         video.model = model;
         return video;
     }else if ([model.feedsType isEqualToString:@"video"] && model.isBigPic == 0){
@@ -226,15 +224,6 @@
 //    
 //    [self.tableView registerNib:[UINib nibWithNibName:NSStringFromClass([WFNewsADCell class]) bundle:nil] forCellReuseIdentifier:@"WFNewsAD"];
 }
-#pragma mark - removeNews
-- (void)removeAtIndexPath:(NSIndexPath *)indexPath showPoint:(CGPoint)point upLoadModel:(KMNewsModel *)model{
-    [ShieldModule showShieldViewWithPoint:point completed:^{
-        [self.newsArray removeObjectAtIndex:indexPath.row];
-        [self.tableView deleteRowsAtIndexPaths:@[[NSIndexPath indexPathForRow:indexPath.row inSection:indexPath.section]] withRowAnimation:UITableViewRowAnimationAutomatic];
-//        [self showTipView:@"将减少推荐类似内容"];
-//        [self uploadDislikeWithModel:model];
-    } canceled:nil];
-}
 #pragma mark - cache newsArray
 - (NSMutableArray *)transformModelArrWithCacheArr:(NSArray *)cacheArr{
     NSMutableArray *mArr = [NSMutableArray new];
@@ -265,6 +254,35 @@
     }
     return mArr;
 }
+#pragma mark lazy
+- (NSMutableArray *)newsArray{
+
+    if (_newsArray == nil) {
+        _newsArray = [NSMutableArray array];
+    }
+    return _newsArray;
+}
+#pragma mark - removeNews
+- (void)removeAtIndexPath:(NSIndexPath *)indexPath showPoint:(CGPoint)point upLoadModel:(KMNewsModel *)model{
+    [ShieldModule showShieldViewWithPoint:point completed:^{
+        [self.newsArray removeObjectAtIndex:indexPath.row];
+        [self.tableView deleteRowsAtIndexPaths:@[[NSIndexPath indexPathForRow:indexPath.row inSection:indexPath.section]] withRowAnimation:UITableViewRowAnimationAutomatic];
+    } canceled:nil];
+}
+
+#pragma mark save coredata
+- (void)loadCacheData{
+    NSMutableArray *mCache = [self transformModelArrWithCacheArr:[[NewsCoreDataManager manager] getNewsCache]];
+    if (mCache && mCache.count > 0 && _newsArray.count == 0) {
+        _newsArray = mCache;
+        NSLog(@"count=%ld",_newsArray.count);
+    }
+    dispatch_async(dispatch_get_main_queue(), ^{
+        [self.tableView reloadData];
+    });
+}
+
+
 //- (void)saveContextWithNews:(NSMutableArray *)news{
 //    NSInteger index = 0;
 //    [[NewsCoreDataManager manager] removeCache];
@@ -280,7 +298,7 @@
 //        //Managed Object
 //        NewsCache *cache = [NSEntityDescription insertNewObjectForEntityForName:@"NewsCache" inManagedObjectContext:ctx];
 //        [cache insertWithModel:model];
-//        
+//
 //        if ([ctx hasChanges]) {
 //            NSError *error;
 //            if (![ctx save:&error]) {
@@ -291,24 +309,4 @@
 //        }
 //    }
 //}
-- (void)loadCacheData{
-    NSArray *cache = [[NewsCoreDataManager manager] getNewsCache];
-    NSMutableArray *mCache = [self transformModelArrWithCacheArr:cache];
-    if (mCache && mCache.count > 0 && _newsArray.count == 0) {
-        [_newsArray addObjectsFromArray:mCache];
-    }
-    NSLog(@"count=%ld",_newsArray.count);
-    dispatch_async(dispatch_get_main_queue(), ^{
-        [self.tableView reloadData];
-    });
-}
-
-#pragma mark lazy
-- (NSMutableArray *)newsArray{
-
-    if (_newsArray == nil) {
-        _newsArray = [NSMutableArray array];
-    }
-    return _newsArray;
-}
 @end

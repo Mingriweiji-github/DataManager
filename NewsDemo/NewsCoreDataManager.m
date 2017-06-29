@@ -116,6 +116,8 @@
 //插入数据
 - (void)insertCoreData:(NSMutableArray*)dataArray
 {
+    [self removeCache];
+    
     NSManagedObjectContext *ctx = [NewsCoreDataManager manager].mainContext;
     for (KMNewsModel *model in dataArray) {
         //把model直接赋值momd中的实体NSEntityDescription
@@ -154,9 +156,7 @@
     NSManagedObjectContext *ctx = [[NewsCoreDataManager manager] mainContext];
     //    [NSFetchRequest fetchRequestWithEntityName:@"NewsCache"];
     NSFetchRequest *request = [NewsCache fetchRequest];
-    request.includesPropertyValues = NO;
 //    request.fetchLimit = 20;
-    request.includesPendingChanges = NO;
     
     NSArray *result = [ctx executeFetchRequest:request error:nil];
     NSLog(@"获取缓存result.count=%ld",result.count);
