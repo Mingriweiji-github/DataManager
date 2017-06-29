@@ -7,7 +7,7 @@
 //
 
 #import "AppDelegate.h"
-
+#import "ViewController.h"
 @interface AppDelegate ()
 
 @end
@@ -51,6 +51,15 @@
 //        NSLog(@"%ld---%@",idx,obj);
 //
 //    }];
+    
+    UIWindow *window = [[UIWindow alloc] initWithFrame:[UIScreen mainScreen].bounds];
+    window.backgroundColor = [UIColor whiteColor];
+    UINavigationController *nav = [[UIStoryboard storyboardWithName:@"Main" bundle:nil] instantiateViewControllerWithIdentifier:@"rootNavi"];
+        window.rootViewController = nav;
+    
+    [self.window makeKeyAndVisible];
+    
+    
     
     return YES;
 }

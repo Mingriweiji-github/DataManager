@@ -185,6 +185,7 @@
 				141ED0541F0148B50063B6D8 /* AppDelegate.m */,
 				141ED0561F0148B50063B6D8 /* ViewController.h */,
 				141ED0571F0148B50063B6D8 /* ViewController.m */,
+				146C3E691F03262C001AC6D3 /* CoreDataManager */,
 				C772C3761F0229AD0046678E /* News */,
 				141ED0591F0148B50063B6D8 /* Main.storyboard */,
 				141ED05F1F0148B50063B6D8 /* Assets.xcassets */,
@@ -266,7 +267,6 @@
 				146C3E6A1F03266E001AC6D3 /* NewsDB.xcdatamodeld */,
 			);
 			name = CoreDataManager;
-			path = ..;
 			sourceTree = "<group>";
 		};
 		53D5CDE59280331928977DB3 /* Frameworks */ = {
@@ -313,7 +313,6 @@
 		C772C3761F0229AD0046678E /* News */ = {
 			isa = PBXGroup;
 			children = (
-				146C3E691F03262C001AC6D3 /* CoreDataManager */,
 				144D96AE1F029EC50086BBC4 /* cells */,
 				C772C3591F02083C0046678E /* Categories */,
 				C772C36F1F0229660046678E /* Utils */,
