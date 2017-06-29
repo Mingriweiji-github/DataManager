@@ -17,7 +17,7 @@
 
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions {
     // Override point for customization after application launch.
-    NSArray *array1 = [NSArray arrayWithObjects:@1,@2,@3,@5,@5,@6,@7, nil];
+//    NSArray *array1 = [NSArray arrayWithObjects:@1,@2,@3,@5,@5,@6,@7, nil];
     
 //    NSPredicate *p1 = [NSPredicate predicateWithFormat:@"self in %@",array2];
 //
@@ -26,31 +26,31 @@
 //    NSSet *set = [NSSet setWithArray:result];
     
 //    NSLog(@"result=%@",set);
-    
-    NSArray *filterArr1 = [array1 filteredArrayUsingPredicate:[NSPredicate predicateWithFormat:@"self > 5"]];
-    [filterArr1 enumerateObjectsUsingBlock:^(id  _Nonnull obj, NSUInteger idx, BOOL * _Nonnull stop) {
-//        NSLog(@"%ld----%@",idx,obj);
-    }];
-    
-    NSArray *filterArr2 = [array1 filteredArrayUsingPredicate:[NSPredicate predicateWithFormat:@"self between {3,6}"]];
-    [filterArr2 enumerateObjectsUsingBlock:^(id  _Nonnull obj, NSUInteger idx, BOOL * _Nonnull stop) {
-        
-//        NSLog(@"------%@",obj);
-    }];
-    
-    NSArray *placeArr = [NSArray arrayWithObjects:@"Beijing",@"shanghai",@"hangzhou",@"Apple",@"Ad",@"abc", nil];
-    NSArray *filterArr3 = [placeArr filteredArrayUsingPredicate:[NSPredicate predicateWithFormat:@"self BEGINSWITH[c] 'a'"]];
-    [filterArr3 enumerateObjectsUsingBlock:^(id  _Nonnull obj, NSUInteger idx, BOOL * _Nonnull stop) {
-        
+//    
+//    NSArray *filterArr1 = [array1 filteredArrayUsingPredicate:[NSPredicate predicateWithFormat:@"self > 5"]];
+//    [filterArr1 enumerateObjectsUsingBlock:^(id  _Nonnull obj, NSUInteger idx, BOOL * _Nonnull stop) {
+////        NSLog(@"%ld----%@",idx,obj);
+//    }];
+//    
+//    NSArray *filterArr2 = [array1 filteredArrayUsingPredicate:[NSPredicate predicateWithFormat:@"self between {3,6}"]];
+//    [filterArr2 enumerateObjectsUsingBlock:^(id  _Nonnull obj, NSUInteger idx, BOOL * _Nonnull stop) {
+//        
+////        NSLog(@"------%@",obj);
+//    }];
+//    
+//    NSArray *placeArr = [NSArray arrayWithObjects:@"Beijing",@"shanghai",@"hangzhou",@"Apple",@"Ad",@"abc", nil];
+//    NSArray *filterArr3 = [placeArr filteredArrayUsingPredicate:[NSPredicate predicateWithFormat:@"self BEGINSWITH[c] 'a'"]];
+//    [filterArr3 enumerateObjectsUsingBlock:^(id  _Nonnull obj, NSUInteger idx, BOOL * _Nonnull stop) {
+//        
+////        NSLog(@"%ld---%@",idx,obj);
+//    }];
+//    
+//    NSArray *likeArr = [placeArr filteredArrayUsingPredicate:[NSPredicate predicateWithFormat:@"self like '*i*'"]];
+//    [likeArr enumerateObjectsUsingBlock:^(id  _Nonnull obj, NSUInteger idx, BOOL * _Nonnull stop) {
+//        
 //        NSLog(@"%ld---%@",idx,obj);
-    }];
-    
-    NSArray *likeArr = [placeArr filteredArrayUsingPredicate:[NSPredicate predicateWithFormat:@"self like '*i*'"]];
-    [likeArr enumerateObjectsUsingBlock:^(id  _Nonnull obj, NSUInteger idx, BOOL * _Nonnull stop) {
-        
-        NSLog(@"%ld---%@",idx,obj);
-
-    }];
+//
+//    }];
     
     return YES;
 }
