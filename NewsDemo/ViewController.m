@@ -37,8 +37,6 @@
     [self registerCell];
     [self newsData];
 }
-
-
 - (void)newsData{
     NSTimeInterval interval = [[NSDate date] timeIntervalSince1970];
     NSString *time = [NSString stringWithFormat:@"%.f",interval];
